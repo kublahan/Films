@@ -1,0 +1,58 @@
+.header {
+  position: fixed; /* Фиксируем header на экране */
+  top: 0; /* Прикрепляем к верхнему краю */
+  left: 0; /* Прикрепляем к левому краю */
+  width: 100%; /* Растягиваем на всю ширину */
+  z-index: 100; /* Обеспечиваем, чтобы header был поверх других элементов */
+    background-color: #1f1f1f; // Пример цвета фона
+    padding: 20px 0; // Пример отступов
+  
+    &__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    &__logo {
+      img {
+        width: 100px; // Пример размера логотипа
+      }
+    }
+  
+    &__nav {
+      display: flex;
+  
+      .header__link {
+        color: #fff; // Пример цвета ссылок
+        margin-left: 20px; // Пример отступа между ссылками
+        text-decoration: none; // Убираем подчеркивание у ссылок
+      }
+    }
+  
+    &__search {
+      display: flex;
+  
+      input[type="text"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+      }
+  
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ccc; // Пример цвета кнопки
+        margin-left: 10px;
+      }
+    }
+  
+    &__profile {
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ccc; // Пример цвета кнопки
+      }
+    }
+  }
