@@ -1,15 +1,19 @@
 import React from 'react';
 import './Header.scss'; // Импортируйте стили
+import logo from '../../assets/react.svg';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="container">
         <div className="header__inner">
         
           <nav className="header__nav">
-            <a href="#" className="header__link">Онлайн-кинотеатр</a>
-            <a href="#" className="header__link">Билеты в кино</a>
+            <a href="#" className="header__link">
+              <img src={logo} alt="Логотип компании" className="header__logo" />
+            </a>
+            <a href="#" className="header__link">Отзывы</a>
+            <a href="#" className="header__link">Рецензии</a>
             <a href="#" className="header__link">Фильмы/сериалы</a>
           </nav>
           <div className="header__search">
@@ -24,5 +28,3 @@ const Header: React.FC = () => {
     </header>
   );
 };
-
-export default Header;

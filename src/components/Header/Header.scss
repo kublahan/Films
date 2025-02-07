@@ -31,11 +31,16 @@
   
     &__search {
       display: flex;
+      width: 50%;
   
       input[type="text"] {
         padding: 10px;
         border: none;
-        border-radius: 5px;
+        border-radius: 25px;
+        color:#1f1f1f;
+        background-color: #ccc;
+        flex-grow: 1;
+        font-size: large;
       }
   
       button {
