@@ -1,0 +1,61 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    width: 250px;
+  
+    button {
+      background: transparent; /* Transparent background */
+      color: #ccc;
+      padding: 10px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 4px;
+      outline: none; /* Remove blue outline */
+      border: none; /* Remove default button border (optional) */
+      font-size: 1.2rem;
+    }
+  
+    button:focus-visible { /* Or button:focus */
+      outline: 2px solid lightblue; /* Or your preferred focus indicator */
+    }
+  
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #333; /* Черный фон выпадающего списка */
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Более темная тень */
+      z-index: 1;
+  
+      &.show {
+        display: block;
+      }
+    }
+    .dropdown-item:hover {
+        color: white; /* Или любой другой цвет, который вы хотите */
+        /* Другие стили по желанию (например, изменение фона, добавление тени) */
+        
+      }
+  
+    .dropdown-item {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      color: #ccc;
+      outline: none;
+      border: none; 
+      background: transparent; 
+      cursor: pointer; 
+      input[type="checkbox"] {
+        margin-right: 10px;
+      }
+    }
+
+    .dropdown button {
+        /* ... other styles ... */
+        outline: none; /* Removes the blue outline */
+      }
+  
+  }

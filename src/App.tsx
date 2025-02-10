@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import './App.scss'
-import { Tooltip, Toast, Popover } from 'bootstrap';
 import { Header } from './components/Header';
 
 
@@ -16,4 +14,5 @@ function App() {
   )
 }
 
+fetch("")
 export default App

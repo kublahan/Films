@@ -1,6 +1,7 @@
 import React from 'react';
 import './Header.scss'; // Импортируйте стили
 import logo from '../../assets/react.svg';
+import { Dropdown } from '../Dropdown';
 
 export const Header: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ export const Header: React.FC = () => {
             <a href="#" className="header__link">
               <img src={logo} alt="Логотип компании" className="header__logo" />
             </a>
-            <a href="#" className="header__link">Отзывы</a>
+              <Dropdown />
             <a href="#" className="header__link">Рецензии</a>
             <a href="#" className="header__link">Фильмы/сериалы</a>
           </nav>
