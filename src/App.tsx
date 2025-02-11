@@ -1,18 +1,13 @@
-import './App.scss'
-import { Header } from './components/Header';
-
+import './App.scss';
+import { router } from './config/routes';
+import { RouterProvider } from 'react-router-dom';
 
 function App() {
-
   return (
-    <>
-      <div>
-      <Header />
-      {/* Остальной контент */}
-    </div>
-    </>
-  )
+    
+    <RouterProvider router={router} />
+    
+  );
 }
 
-fetch("")
-export default App
+export default App;
