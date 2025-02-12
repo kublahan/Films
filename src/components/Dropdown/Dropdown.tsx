@@ -1,6 +1,7 @@
 import React, { useState, useRef,} from 'react';
 import './Dropdown.scss';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface DropdownItem {
   label: string;
@@ -43,9 +44,9 @@ export const Dropdown: React.FC = () => {
       onMouseEnter={handleMouseEnter} // Добавляем обработчик наведения
       onMouseLeave={handleMouseLeave} // Добавляем обработчик ухода мыши
     >
-      <button> {/* Кнопка остается для визуального отображения */}
-        КИНОПОИСК
-      </button>
+      <Link to="/"> {/* Заменяем <button> на <Link> */}
+          <button>КИНОПОИСК</button>
+      </Link>
       <div className={`dropdown-content ${isOpen ? 'show' : ''}`}>
         {items.map((item, index) => (
           <button 
