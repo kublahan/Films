@@ -9,5 +9,3 @@ export const MainPage: React.FC = () => {
     </div>
   );
 };
-
-MainPage.displayName = 'MainPage';

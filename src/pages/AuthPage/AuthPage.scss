@@ -1,15 +1,23 @@
+html, body {
+  height: 100%; /* Задаем высоту для html и body */
+  margin: 0;   /* Убираем стандартные отступы у body */
+}
+
+
 .auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0; // Примерный фон
+    background-color: #1f1f1f; // Примерный фон
+    width: 100%; /* Занимает всю ширину */
+    height: 100%;
   
     .auth-container {
-      background-color: #fff;
+      background-color: #1f1f1f;
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      
   
       h2 {
         text-align: center;
@@ -19,6 +27,7 @@
       form {
         display: flex;
         flex-direction: column;
+        
   
         input {
           margin-bottom: 10px;
