@@ -1,54 +1,64 @@
-html, body {
-  height: 100%; /* Задаем высоту для html и body */
-  margin: 0;   /* Убираем стандартные отступы у body */
-}
 
 
 .auth-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1f1f1f; // Примерный фон
-    width: 100%; /* Занимает всю ширину */
-    height: 100%;
+  margin: 0;   /* Остается без изменений */
+  background-image: url('../../assets/AuthPage-background.jpg'); /* Замените на путь к вашему изображению */
+  background-size: cover; /* Или contain, auto, и т.д. */
+  background-repeat: no-repeat; /* Чтобы изображение не повторялось */
+  background-position: center; /* Центрировать изображение */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+    
+
   
     .auth-container {
-      background-color: #1f1f1f;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      
+      background-color: #1f1f1f; // Примерный фон
+      padding: 1.875rem; /* 30px / 16 = 1.875rem */
+      border-radius: 1rem; /* 8px / 16 = 0.5rem */
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 2px / 16 = 0.125rem, 4px / 16 = 0.25rem */
   
       h2 {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem; /* 20px / 16 = 1.25rem */
       }
   
       form {
         display: flex;
         flex-direction: column;
-        
   
         input {
-          margin-bottom: 10px;
-          padding: 10px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
+          font-size: large;
+          margin-bottom: 0.625rem; /* 10px / 16 = 0.625rem */
+          padding: 0.625rem; /* 10px / 16 = 0.625rem */
+          border: 1px solid #ccc; /* Остается в px, так как это толщина границы */
+          border-radius: 1rem; /* 4px / 16 = 0.25rem */
         }
   
         button {
-          padding: 10px 15px;
+          padding: 0.625rem 0.9375rem; /* 10px / 16 = 0.625rem, 15px / 16 = 0.9375rem */
           background-color: #007bff;
           color: #fff;
           border: none;
-          border-radius: 4px;
+          border-radius: 0.25rem; /* 4px / 16 = 0.25rem */
           cursor: pointer;
         }
+
+        
+      }
+
+      .auth-back{
+        
+          width: 15%; // Пример размера логотипа
+        
       }
   
       .auth-toggle {
         text-align: center;
-        margin-top: 10px;
+        margin-top: 0.625rem; /* 10px / 16 = 0.625rem */
   
         button {
           background: none;
@@ -58,4 +68,4 @@ html, body {
         }
       }
     }
-  }
+}

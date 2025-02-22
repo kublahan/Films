@@ -9,7 +9,11 @@ export const router = createBrowserRouter([
     element: <MainLayout />, // Используйте MainLayout здесь
     children: [
       { path: '/', element: <MainPage /> },
-      { path: '/auth', element: <AuthPage /> },
+      
     ],
+  },
+  {
+    path: '/auth',
+    element: <AuthPage />,
   },
 ]);

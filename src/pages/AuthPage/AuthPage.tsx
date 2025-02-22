@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './AuthPage.scss';
 import {AuthForm} from './AuthForm'; // Импортируем компонент формы
+import { Link } from 'react-router-dom';
+import backButton from '../../assets/back-button.png';
 
 export const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true); // Состояние для переключения между регистрацией и логином
@@ -22,6 +24,9 @@ export const AuthPage: React.FC = () => {
   return (
     <div className="auth-page">
       <div className="auth-container">
+        <Link to="/"> {}
+            <img src={backButton} alt="Кнопка назад" className="auth-back" />
+         </Link>
         <h2>{isLogin ? 'Вход' : 'Регистрация'}</h2>
 
         <AuthForm 
