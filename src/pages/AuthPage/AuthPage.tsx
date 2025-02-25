@@ -7,17 +7,31 @@ import backButton from '../../assets/back-button.png';
 export const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true); // Состояние для переключения между регистрацией и логином
 
-  const handleFormSubmit = (data: any) => {
-    // Обработка данных формы (логин или регистрация)
-    console.log(data);
+  const handleFormSubmit = async(data: any) => {
+    try {
+      const response = await fetch('/api/auth', { // Замените /api/auth на ваш эндпоинт
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    // Здесь можно отправить запрос на сервер для аутентификации
-    // и обработать ответ (например, сохранить токен в localStorage)
+      const result = await response.json();
 
-    if (isLogin) {
-      // Действия после успешного логина
-    } else {
-      // Действия после успешной регистрации
+      if (response.ok) {
+        // Сохраняем токен в localStorage или другом месте
+        localStorage.setItem('token', result.token);
+
+        // Перенаправляем пользователя на другую страницу
+        <Link to="/"> { }</Link>;
+      } else {
+        // Обрабатываем ошибку
+        console.error(result.message);
+        alert(result.message)
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке запроса:', error);
     }
   };
 
