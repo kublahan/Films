@@ -1,0 +1,37 @@
+.error-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Занимаем всю высоту экрана */
+    background-color: #f0f0f0; /* Светло-серый фон */
+  
+    .error-content {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень */
+  
+      .error-title {
+        color: #d32f2f; /* Красный цвет для заголовка */
+        margin-bottom: 10px;
+      }
+  
+      .error-message {
+        margin-bottom: 20px;
+      }
+  
+      .error-reload-button {
+        padding: 10px 20px;
+        background-color: #4caf50; /* Зеленый цвет для кнопки */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #45a049; /* Более темный зеленый при наведении */
+        }
+      }
+    }
+  }

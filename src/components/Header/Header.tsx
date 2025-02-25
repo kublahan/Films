@@ -3,6 +3,7 @@ import './Header.scss';
 import logo from '../../assets/react.svg';
 import { Dropdown } from '../Dropdown';
 import { Link } from 'react-router-dom'; // Импортируем Link
+import { ErrorComponent } from '../ErrorBoundary';
 
 export const Header: React.FC = () => {
   return (
