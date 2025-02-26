@@ -1,6 +1,12 @@
-const getRandomMovie = async () => {
+interface Movie {
+    name: string;
+    year: number;
+    description: string;
+}
+
+const getRandomMovie = async (): Promise<Movie | null> => {
     try {
-        const options = {
+        const options: RequestInit = {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -8,17 +14,21 @@ const getRandomMovie = async () => {
             },
         };
 
-        const response = await fetch('https://api.kinopoisk.dev/v1.4/movie/random', options);
+        const response: Response = await fetch('https://api.kinopoisk.dev/v1.4/movie/random', options);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data: Movie = await response.json();
         console.log("Данные о случайном фильме:", data);
         return data;
-    } catch (err) {
-        console.error("Ошибка при получении данных:", err);
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            console.error("Ошибка при получении данных:", err.message);
+        } else {
+            console.error("Неизвестная ошибка при получении данных:", err);
+        }
         return null;
     }
 };
@@ -26,7 +36,7 @@ const getRandomMovie = async () => {
 getRandomMovie(); // Вызываем функцию для получения случайного фильма
 
 class FilmService {
-    async getRandomMovie() {
+    async getRandomMovie(): Promise<Movie | null> {
         return getRandomMovie();
     }
 }
