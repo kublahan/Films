@@ -1,42 +1,34 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import ErrorMessage from '../../assets/error.gif';
 
-interface Props {
-  children?: ReactNode;
+interface ErrorBoundaryState {
+  error: boolean;
 }
 
-interface State {
-  hasError: boolean;
+interface ErrorBoundaryProps {
+  children: ReactNode;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
+export class ErrorComponent extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false };
+    this.state = {
+      error: false,
+    };
   }
 
-  static getDerivedStateFromError(error: Error) {
-    // Обновить состояние для следующего рендера.
-    return { hasError: true };
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.error(error, errorInfo);
+    this.setState({
+      error: true,
+    });
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Можно также записать информацию об ошибке в журнал ошибок.
-    console.error("Ошибка:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // Можно отрендерить запасной UI вместо упавшего компонента.
-      return (
-        <div>
-          <h1>Упс! Что-то пошло не так.</h1>
-          <p>Пожалуйста, попробуйте перезагрузить страницу.</p>
-        </div>
-      );
+  render(): ReactNode {
+    if (this.state.error) {
+      return <ErrorMessage />;
     }
 
     return this.props.children;
   }
 }
-
-export default ErrorBoundary;

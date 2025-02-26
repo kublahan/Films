@@ -15,7 +15,9 @@ export const Header: React.FC = () => {
             <Link to="/" className="header__link"> {/* Заменяем <a> на <Link> */}
               <img src={logo} alt="Логотип компании" className="header__logo" />
             </Link>
-            <Dropdown />
+            <ErrorComponent>
+                <Dropdown />
+            </ErrorComponent>
             <Link to="/reviews" className="header__link">Рецензии</Link> {/* Заменяем <a> на <Link> */}
             <Link to="/movies" className="header__link">Фильмы/сериалы</Link> {/* Заменяем <a> на <Link> */}
           </nav>
@@ -24,7 +26,7 @@ export const Header: React.FC = () => {
             <button>Найти</button>
           </div>
           <div className="header__profile">
-            <Link to="/auth"> {/* Заменяем <button> на <Link> */}
+            <Link to="/auth">
               <button>Войти</button>
             </Link>
           </div>
