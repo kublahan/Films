@@ -1,28 +1,29 @@
-interface Movie {
-    name: string;
-    year: number;
-    description: string;
-}
+import { IFilmService } from '@/services/IFilmService';
 
-const getRandomMovie = async (): Promise<Movie | null> => {
+const getRandomMovie = async (): Promise<IFilmService | null> => {
     try {
         const options: RequestInit = {
             method: 'GET',
             headers: {
-                accept: 'application/json',
-                'X-API-KEY': 'HNQQB1N-49KMVP4-GMJNAPD-AFR430K',
+                'X-API-KEY': 'ba3d78e1-8abc-45a1-8644-cd9abbc86c01',
+                'Content-Type': 'application/json',
             },
         };
 
-        const response: Response = await fetch('https://api.kinopoisk.dev/v1.4/movie/random', options);
+        const response: Response = await fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/301', options);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data: Movie = await response.json();
-        console.log("Данные о случайном фильме:", data);
-        return data;
+        const data: any = await response.json();
+        const movie: IFilmService = {
+            name: data.name,
+            year: data.year,
+            description: data.description,
+            poster: data.poster && data.poster.url ? { url: data.poster.url } : { url: '' }, // Проверка наличия poster и url
+        };
+        return movie;
     } catch (err: unknown) {
         if (err instanceof Error) {
             console.error("Ошибка при получении данных:", err.message);
@@ -33,10 +34,8 @@ const getRandomMovie = async (): Promise<Movie | null> => {
     }
 };
 
-getRandomMovie(); // Вызываем функцию для получения случайного фильма
-
 class FilmService {
-    async getRandomMovie(): Promise<Movie | null> {
+    async getRandomMovie(): Promise<IFilmService | null> {
         return getRandomMovie();
     }
 }

@@ -5,8 +5,8 @@ import { MainPage } from '@/pages/MainPage';
 
 export const router = createBrowserRouter([
   {
-    path: '/', // <- Указываем path для родительского маршрута
-    element: <MainLayout />, // Используйте MainLayout здесь
+    path: '/',
+    element: <MainLayout />,
     children: [
       { path: '/', element: <MainPage /> },
       

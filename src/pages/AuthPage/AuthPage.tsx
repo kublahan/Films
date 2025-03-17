@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './AuthPage.scss';
-import {AuthForm} from './AuthForm'; // Импортируем компонент формы
+import {AuthForm} from './AuthForm';
 import { Link } from 'react-router-dom';
 import backButton from '../../assets/back-button.png';
 
 export const AuthPage: React.FC = () => {
-  const [isLogin, setIsLogin] = useState(true); // Состояние для переключения между регистрацией и логином
+  const [isLogin, setIsLogin] = useState(true);
 
   const handleFormSubmit = async(data: any) => {
     try {
-      const response = await fetch('/api/auth', { // Замените /api/auth на ваш эндпоинт
+      const response = await fetch('/api/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,13 +20,10 @@ export const AuthPage: React.FC = () => {
       const result = await response.json();
 
       if (response.ok) {
-        // Сохраняем токен в localStorage или другом месте
         localStorage.setItem('token', result.token);
 
-        // Перенаправляем пользователя на другую страницу
         <Link to="/"> { }</Link>;
       } else {
-        // Обрабатываем ошибку
         console.error(result.message);
         alert(result.message)
       }

@@ -1,13 +1,18 @@
 .main-page {
+  .movies-list {
     display: flex;
-    flex-direction: column;
-    align-items: center; // Центрируем по горизонтали
-    justify-content: center; // Центрируем по вертикали
-    min-height: 100vh; // Занимаем всю высоту экрана
-    width: 100%;
-  
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .movie-item {
+      width: 300px;
+      margin-bottom: 20px;
+      text-align: center;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
   }
+}
