@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import pg from 'pg';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -26,8 +26,29 @@ const pool = new Pool({
 // Секретный ключ для JWT
 const secretKey = 'your_secret_key';
 
+// Тип для тела запроса регистрации
+interface RegisterRequestBody {
+  email: string;
+  password: string;
+  name: string;
+}
+
+// Тип для тела запроса логина
+interface LoginRequestBody {
+  email: string;
+  password: string;
+}
+
+// Тип для ответа аутентификации
+interface AuthResponse {
+  token: string;
+}
+
 // Регистрация
-app.post('/api/register', async (req, res) => {
+app.post('/api/register', async (
+  req: Request<{}, AuthResponse | { message: string }, RegisterRequestBody>,
+  res: Response<AuthResponse | { message: string }>
+) => {
   try {
     const { email, password, name } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -40,7 +61,7 @@ app.post('/api/register', async (req, res) => {
     const user = result.rows[0];
     const token = jwt.sign({ userId: user.id }, secretKey);
 
-    console.log('Ответ бэкенда:', { token }); // Логирование перед отправкой
+    console.log('Ответ бэкенда:', { token });
     res.json({ token });
   } catch (error) {
     console.error('Ошибка в /api/register:', error);
@@ -49,10 +70,12 @@ app.post('/api/register', async (req, res) => {
 });
 
 // Авторизация
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', async (
+  req: Request<{}, AuthResponse | { message: string }, LoginRequestBody>,
+  res: Response<AuthResponse | { message: string }>
+) => {
   try {
     const { email, password } = req.body;
-
     const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     const user = result.rows[0];
 

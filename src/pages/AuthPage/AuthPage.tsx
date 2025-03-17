@@ -23,7 +23,7 @@ export const AuthPage: React.FC = () => {
 
       if (response.ok) {
         localStorage.setItem('token', result.token);
-        navigate('/'); // Перенаправление на главную страницу
+        navigate('/user'); // Перенаправление на главную страницу
       } else {
         console.error(result.message);
         alert(result.message);
