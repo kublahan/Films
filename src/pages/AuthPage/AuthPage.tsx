@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import './AuthPage.scss';
-import {AuthForm} from './AuthForm';
-import { Link } from 'react-router-dom';
+import { AuthForm } from './AuthForm';
+import { Link, useNavigate } from 'react-router-dom';
 import backButton from '../../assets/back-button.png';
 
 export const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
 
-  const handleFormSubmit = async(data: any) => {
+  const handleFormSubmit = async (data: any) => {
     try {
-      const response = await fetch('/api/auth', {
+      const url = isLogin ? 'http://localhost:5000/api/login' : 'http://localhost:5000/api/register';
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,11 +23,10 @@ export const AuthPage: React.FC = () => {
 
       if (response.ok) {
         localStorage.setItem('token', result.token);
-
-        <Link to="/"> { }</Link>;
+        navigate('/'); // Перенаправление на главную страницу
       } else {
         console.error(result.message);
-        alert(result.message)
+        alert(result.message);
       }
     } catch (error) {
       console.error('Ошибка при отправке запроса:', error);
@@ -35,15 +36,12 @@ export const AuthPage: React.FC = () => {
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <Link to="/"> {}
-            <img src={backButton} alt="Кнопка назад" className="auth-back" />
-         </Link>
+        <Link to="/">
+          <img src={backButton} alt="Кнопка назад" className="auth-back" />
+        </Link>
         <h2>{isLogin ? 'Вход' : 'Регистрация'}</h2>
 
-        <AuthForm 
-          isLogin={isLogin} 
-          onSubmit={handleFormSubmit} 
-        />
+        <AuthForm isLogin={isLogin} onSubmit={handleFormSubmit} />
 
         <div className="auth-toggle">
           <button onClick={() => setIsLogin(!isLogin)}>

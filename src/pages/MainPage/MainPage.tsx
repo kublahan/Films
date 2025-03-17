@@ -9,7 +9,7 @@ export const MainPage: React.FC = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const numberOfMovies = 20; // Количество фильмов для получения
+      const numberOfMovies = 3;
       const moviesArray: IFilmService[] = [];
 
       for (let i = 0; i < numberOfMovies; i++) {

@@ -7,9 +7,8 @@ export const MainLayout = () => {
   return (
     <>
       <div>
-        <Header />  {/* This line is crucial - renders the Header */}
+        <Header />
         <Outlet /> {/* Здесь будут отображаться дочерние маршруты */}
-        {/* Остальной контент */}
       </div>
     </>
   );
