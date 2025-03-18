@@ -1,0 +1,91 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.user-page {
+    width: 100%; /* Занимает всю ширину */
+    min-height: 100vh; /* Занимает всю высоту */
+    background-color: #121212;
+    color: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Расположение контента сверху вниз */
+    align-items: center; /* Центрирование по горизонтали */
+    justify-content: flex-start; /* Размещение контента в начале вертикали */
+
+    .user-container {
+        width: 100%;
+        max-width: 600px;
+        padding: 40px;
+        background-color: #1e1e1e;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+
+        .user-back {
+            width: 35px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: translateX(-5px);
+            }
+        }
+
+        h2 {
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-info {
+            .user-avatar {
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 20px;
+                border: 5px solid #333; /* Темный бордюр */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            }
+
+            input[type="file"] {
+                margin-bottom: 20px;
+                padding: 12px;
+                border: 1px solid #333;
+                border-radius: 6px;
+                width: 100%;
+                box-sizing: border-box;
+                background-color: #333; /* Темный фон для input */
+                color: #e0e0e0;
+            }
+
+            button {
+                background-color: #6a11cb;
+                color: white;
+                padding: 14px 30px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: #5a0dbb;
+                }
+            }
+
+            p {
+                margin-top: 25px;
+                font-size: 18px;
+                color: #9e9e9e; /* Менее яркий текст */
+            }
+        }
+    }
+}

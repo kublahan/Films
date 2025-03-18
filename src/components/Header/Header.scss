@@ -1,11 +1,11 @@
 .header {
-  position: fixed; /* Фиксируем header на экране */
+  position: sticky; /* Фиксируем header на экране */
   top: 0; /* Прикрепляем к верхнему краю */
   left: 0; /* Прикрепляем к левому краю */
-  width: 100%; /* Растягиваем на всю ширину */
+  width: 100%;
   z-index: 100; /* Обеспечиваем, чтобы header был поверх других элементов */
-    background-color: #1f1f1f; // Пример цвета фона
-    padding: 20px 0; // Пример отступов
+    background-color: #1f1f1f;
+    padding: 20px 0;
   
     &__inner {
       display: flex;
@@ -23,9 +23,9 @@
       display: flex;
   
       .header__link {
-        color: #fff; // Пример цвета ссылок
-        margin-left: 20px; // Пример отступа между ссылками
-        text-decoration: none; // Убираем подчеркивание у ссылок
+        color: #fff;
+        margin-left: 20px;
+        text-decoration: none;
       }
     }
   
