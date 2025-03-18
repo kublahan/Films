@@ -3,6 +3,10 @@ import pg from 'pg';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
+import * as dotenv from 'dotenv';
+
+
+dotenv.config();
 
 const { Pool } = pg;
 
@@ -23,8 +27,13 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Секретный ключ для JWT
-const secretKey = 'your_secret_key';
+// Секретный ключ для JWT из переменных окружения
+const secretKey = process.env.JWT_SECRET;
+
+if (!secretKey) {
+  console.error('Ошибка: Переменная окружения JWT_SECRET не определена.');
+  process.exit(1); // Завершаем приложение, если ключ не найден
+}
 
 // Тип для тела запроса регистрации
 interface RegisterRequestBody {

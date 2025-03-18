@@ -2,6 +2,8 @@ import { IFilmService } from '@/services/IFilmService';
 
 const getRandomMovie = async (): Promise<IFilmService | null> => {
     try {
+        const randomFilmId = Math.floor(Math.random() * 1000) + 1; // Генерируем случайный ID фильма
+
         const options: RequestInit = {
             method: 'GET',
             headers: {
@@ -10,7 +12,7 @@ const getRandomMovie = async (): Promise<IFilmService | null> => {
             },
         };
 
-        const response: Response = await fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/301', options);
+        const response: Response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${randomFilmId}`, options);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -21,7 +23,7 @@ const getRandomMovie = async (): Promise<IFilmService | null> => {
             name: data.name,
             year: data.year,
             description: data.description,
-            poster: data.poster && data.poster.url ? { url: data.poster.url } : { url: '' }, // Проверка наличия poster и url
+            poster: data.poster && data.poster.url ? { url: data.poster.url } : { url: '' },
         };
         return movie;
     } catch (err: unknown) {
