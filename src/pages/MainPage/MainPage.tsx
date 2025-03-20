@@ -9,13 +9,13 @@ export const MainPage: React.FC = () => {
 
     useEffect(() => {
         const fetchMovies = async () => {
-            const cachedMovies = localStorage.getItem('cachedMovies');
-            if (cachedMovies) {
-                setMovies(JSON.parse(cachedMovies));
-                return;
-            }
+            // const cachedMovies = localStorage.getItem('cachedMovies');
+            // if (cachedMovies) {
+            //     setMovies(JSON.parse(cachedMovies));
+            //     return;
+            // }
 
-            const numberOfMovies = 5;
+            const numberOfMovies = 8;
             const moviePromises: Promise<IFilmService | null>[] = [];
 
             for (let i = 0; i < numberOfMovies; i++) {
@@ -26,7 +26,8 @@ export const MainPage: React.FC = () => {
                 const results = await Promise.all(moviePromises);
                 const validMovies = results.filter((movie): movie is IFilmService => movie !== null);
                 setMovies(validMovies);
-                localStorage.setItem('cachedMovies', JSON.stringify(validMovies));
+                console.log("Полученные фильмы:", validMovies);
+                //localStorage.setItem('cachedMovies', JSON.stringify(validMovies));
             } catch (error) {
                 console.error("Ошибка при получении фильмов:", error);
             }
@@ -37,7 +38,6 @@ export const MainPage: React.FC = () => {
 
     return (
         <div className="main-page">
-            <h1>Главная страница</h1>
             <div className="movie-list">
                 {movies.map((movie, index) => (
                     <div key={movie.name ? movie.name : `movie-${index}`} className="movie-item">

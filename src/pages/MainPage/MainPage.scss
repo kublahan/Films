@@ -1,18 +1,52 @@
 .main-page {
-  .movies-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 20px;
 
-    .movie-item {
-      width: 300px;
+  h1 {
+      font-size: 24px;
       margin-bottom: 20px;
-      text-align: center;
+  }
 
-      img {
-        max-width: 100%;
-        height: auto;
+  .movie-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // Адаптивная сетка
+      gap: 20px;
+
+      .movie-item {
+          background-color: #1e1e1e;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+          transition: transform 0.3s ease; // Плавная анимация при наведении
+
+          &:hover {
+              transform: translateY(-5px); // Поднимаем карточку при наведении
+          }
+
+          img {
+              width: 100%;
+              height: 300px; // Фиксированная высота постера
+              object-fit: cover; // Обрезаем изображение, чтобы оно помещалось в контейнер
+          }
+
+          .movie-details {
+              padding: 10px;
+
+              h2 {
+                  font-size: 16px;
+                  margin-bottom: 5px;
+              }
+
+              p {
+                  font-size: 14px;
+                  color: #9e9e9e;
+                  overflow: hidden; // Обрезаем длинный текст
+                  text-overflow: ellipsis; // Добавляем многоточие
+                  white-space: nowrap; // Запрещаем перенос строк
+              }
+          }
       }
-    }
   }
 }

@@ -7,24 +7,26 @@ const getRandomMovie = async (): Promise<IFilmService | null> => {
         const options: RequestInit = {
             method: 'GET',
             headers: {
-                'X-API-KEY': 'ba3d78e1-8abc-45a1-8644-cd9abbc86c01',
+                'X-API-KEY': 'HNQQB1N-49KMVP4-GMJNAPD-AFR430K',
                 'Content-Type': 'application/json',
             },
         };
 
-        const response: Response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${randomFilmId}`, options);
+        const response: Response = await fetch(`https://api.kinopoisk.dev/v1.4/movie/random?notNullFields=description&notNullFields=name&notNullFields=logo.url`, options);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data: any = await response.json();
+
         const movie: IFilmService = {
             name: data.name,
             year: data.year,
             description: data.description,
             poster: data.poster && data.poster.url ? { url: data.poster.url } : { url: '' },
         };
+
         return movie;
     } catch (err: unknown) {
         if (err instanceof Error) {
