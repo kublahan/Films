@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './MainPage.scss';
 import FilmService from '@/services/FilmService';
 import { IFilmService } from '@/services/IFilmService';
+import { useNavigate } from 'react-router-dom';
 
 export const MainPage: React.FC = () => {
     const [movies, setMovies] = useState<IFilmService[]>([]);
@@ -52,11 +53,19 @@ export const MainPage: React.FC = () => {
         fetchMoreMovies();
     };
 
+    const navigate = useNavigate();
+
+    const handleMovieClick = (movie: IFilmService) => {
+        navigate(`/movie/${movie.name}`, { state: { movie } });
+    };
+
     return (
         <div className="main-page">
             <div className="movie-grid">
                 {movies.map((movie, index) => (
-                    <div key={movie.name ? movie.name : `movie-${index}`} className="movie-card">
+                    <div key={movie.name ? movie.name : `movie-${index}`} className="movie-card"
+                    onClick={() => handleMovieClick(movie)}
+                    style={{ cursor: 'pointer' }}>
                         <div className="movie-poster">
                             <img src={movie.poster.url} alt={movie.name} />
                         </div>
