@@ -7,7 +7,7 @@ const getRandomMovie = async (): Promise<IFilmService | null> => {
         const options: RequestInit = {
             method: 'GET',
             headers: {
-                'X-API-KEY': 'HNQQB1N-49KMVP4-GMJNAPD-AFR430K',
+                'X-API-KEY': 'DNY2RWM-15QME6F-P5AKYEW-TS6XKAN',
                 'Content-Type': 'application/json',
             },
         };

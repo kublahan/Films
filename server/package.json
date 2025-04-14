@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "server-dev": "npx tsx index.ts",
+        "server-dev": "./node_modules/.bin/tsx index.ts",
         "build": "tsc"
     },
     "keywords": [],

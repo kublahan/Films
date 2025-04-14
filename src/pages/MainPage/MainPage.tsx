@@ -1,53 +1,80 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './MainPage.scss';
 import FilmService from '@/services/FilmService';
 import { IFilmService } from '@/services/IFilmService';
 
 export const MainPage: React.FC = () => {
     const [movies, setMovies] = useState<IFilmService[]>([]);
+    const [loading, setLoading] = useState(false);
     const filmService = new FilmService();
+    const moviesPerPage = 12;
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const isInitialLoad = useRef(true);
+
+    const fetchMoreMovies = useCallback(async () => {
+        if (loading || !hasMore) return;
+        setLoading(true);
+        console.log("fetchMoreMovies вызывается");
+
+        const moviePromises: Promise<IFilmService | null>[] = [];
+        for (let i = 0; i < moviesPerPage; i++) {
+            moviePromises.push(filmService.getRandomMovie());
+        }
+
+        try {
+            const results = await Promise.all(moviePromises);
+            const newMovies = results.filter((movie): movie is IFilmService => movie !== null);
+
+            if (newMovies.length < moviesPerPage) {
+                setHasMore(false);
+                console.log("hasMore установлено в false");
+            }
+            setMovies((prevMovies) => [...prevMovies, ...newMovies]);
+            setPage((prevPage) => prevPage + 1);
+            console.log("Загружено фильмов:", movies.length + newMovies.length);
+        } catch (error) {
+            console.error("Ошибка при получении дополнительных фильмов:", error);
+        } finally {
+            setLoading(false);
+            console.log("loading установлено в false");
+        }
+    }, [loading, hasMore, filmService, moviesPerPage]);
 
     useEffect(() => {
-        const fetchMovies = async () => {
-            // const cachedMovies = localStorage.getItem('cachedMovies');
-            // if (cachedMovies) {
-            //     setMovies(JSON.parse(cachedMovies));
-            //     return;
-            // }
+        if (isInitialLoad.current) {
+            fetchMoreMovies();
+            isInitialLoad.current = false;
+        }
+    }, [fetchMoreMovies]);
 
-            const numberOfMovies = 8;
-            const moviePromises: Promise<IFilmService | null>[] = [];
-
-            for (let i = 0; i < numberOfMovies; i++) {
-                moviePromises.push(filmService.getRandomMovie());
-            }
-
-            try {
-                const results = await Promise.all(moviePromises);
-                const validMovies = results.filter((movie): movie is IFilmService => movie !== null);
-                setMovies(validMovies);
-                console.log("Полученные фильмы:", validMovies);
-                //localStorage.setItem('cachedMovies', JSON.stringify(validMovies));
-            } catch (error) {
-                console.error("Ошибка при получении фильмов:", error);
-            }
-        };
-
-        fetchMovies();
-    }, []);
+    const handleLoadMoreClick = () => {
+        fetchMoreMovies();
+    };
 
     return (
         <div className="main-page">
-            <div className="movie-list">
+            <div className="movie-grid">
                 {movies.map((movie, index) => (
-                    <div key={movie.name ? movie.name : `movie-${index}`} className="movie-item">
-                        <img src={movie.poster.url} alt={movie.name} />
-                        <h2>{movie.name}</h2>
-                        <p>{movie.year}</p>
-                        <p>{movie.description}</p>
+                    <div key={movie.name ? movie.name : `movie-${index}`} className="movie-card">
+                        <div className="movie-poster">
+                            <img src={movie.poster.url} alt={movie.name} />
+                        </div>
+                        <div className="movie-info">
+                            <h3>{movie.name}</h3>
+                            <p className="movie-year">{movie.year}</p>
+                        </div>
                     </div>
                 ))}
             </div>
+            {hasMore && (
+                <button onClick={handleLoadMoreClick} className="load-more-button" disabled={loading}>
+                    {loading ? 'Загрузка...' : 'Ещё'}
+                </button>
+            )}
+            {!hasMore && movies.length > 0 && (
+                <p className="no-more-movies">Больше фильмов нет.</p>
+            )}
         </div>
     );
 };
