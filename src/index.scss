@@ -23,7 +23,7 @@ a:hover {
 }
 
 html, body {
-  height: 100%; /* Или min-height: 100% */
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -31,8 +31,8 @@ html, body {
 body {
   margin: 0;
   display: flex;
-  flex-direction: column; /* Изменено */
-  justify-content: flex-start; /* Изменено */
+  flex-direction: column;
+  justify-content: flex-start;
   min-width: 320px;
   min-height: 100vh;
 }

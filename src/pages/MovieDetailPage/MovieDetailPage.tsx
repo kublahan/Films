@@ -31,7 +31,6 @@ export const MovieDetailPage: React.FC = () => {
                     <p className="movie-year">Год: {movie.year}</p>
                     {movie.description && <p className="movie-description">{movie.description}</p>}
                     {!movie.description && <p className="movie-description">Краткое описание отсутствует.</p>}
-                    {/* Другая информация о фильме */}
                 </div>
                 <div className="hero-right">
                     <div className="hero-poster-container">
@@ -39,7 +38,6 @@ export const MovieDetailPage: React.FC = () => {
                     </div>
                 </div>
             </div>
-            {/* Дополнительная информация или элементы страницы */}
         </div>
     );
 };
